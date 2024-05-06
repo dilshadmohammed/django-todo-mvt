@@ -1,0 +1,134 @@
+{% extends "todoapp/base.html" %}
+{% block content %}
+
+
+<style>
+    body {
+        background-color: #121212;
+        color: #ffffff;
+        font-family: Arial, sans-serif;
+    }
+
+    .container {
+        width: fit-content;
+        padding: 2rem;
+        margin: auto;
+    }
+
+    .main {
+        width: 540px;
+        margin: auto;
+        margin-top: 5rem;
+    }
+
+    .heading {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .heading h1 {
+        font-size: 3rem;
+        letter-spacing: 1.2rem;
+    }
+
+    .toggle-theme {
+        width: 3rem;
+        height: 3rem;
+        cursor: pointer;
+    }
+
+    .form {
+        margin-bottom: 1rem;
+        border-radius: 0.5rem;
+    }
+
+    .input-field {
+        width: calc(100% - 0.5rem);
+        height: 3rem;
+        border-radius: 0.5rem;
+        margin-left: 0.5rem;
+        outline: none;
+        padding: 5px;
+        border: none;
+        color: white;
+        background-color: #ffffff;
+    }
+
+    .input-field-dark {
+        background-color: #26292e;
+    }
+
+    .submit-btn {
+        background-color: #1976d2;
+        width: 100%;
+        color: #ffffff;
+        border: none;
+        border-radius: 0.5rem;
+        padding: 0.5rem 2rem;
+        margin: auto;
+        margin-top: 1rem;
+        cursor: pointer;
+        transition: opacity 0.3s;
+    }
+
+    .submit-btn:hover {
+        opacity: 0.9;
+    }
+
+    .error {
+        color: red;
+        margin: auto;
+    }
+
+    .toggle-signup {
+        text-align: center;
+        margin-top: 1rem;
+        cursor: pointer;
+    }
+
+    .toggle-signup span {
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
+    .toggle-signup span:hover {
+        color: #1976d2;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <main class="main">
+        <div class="heading">
+            <h1>SIGN IN</h1>
+            <div class="toggle-theme" onclick="toggleTheme()">
+                <!-- Icon for theme toggle -->
+            </div>
+        </div>
+        <form class="form"  method="POST">
+            {% csrf_token %}
+            <input class="input-field input-field-dark" type="text" placeholder="  Enter your username" required name="username">
+            <br><br>
+            <input class="input-field input-field-dark" type="password" placeholder="  Enter your password" required name="password">
+            <button type="submit" class="submit-btn">Sign In</button>
+        </form>
+        {% if messages %}
+      {% for message in messages %}  
+      <small class="error">{{message}}</small>
+      {% endfor %}
+    {% endif %}
+        <div class="toggle-signup">
+            <small>
+                Don't have an account? <a href="{% url 'register' %}">Sign Up</a>
+            </small>
+        </div>
+    </main>
+</div>
+
+
+
+{% endblock content %}
+
+
